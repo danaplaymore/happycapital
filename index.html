@@ -234,8 +234,16 @@
 			border: 2px solid var(--ink);
 			text-decoration: none;
 			font-weight: 700;
+			font-family: inherit;
+			font-size: 1rem;
+			line-height: 1.6;
 			color: var(--ink);
 			background: var(--white);
+		}
+
+		button.btn {
+			appearance: none;
+			-webkit-appearance: none;
 		}
 
 		.btn.point {
@@ -321,6 +329,21 @@
 
 		.experiment-actions {
 			margin-top: 16px;
+		}
+
+		.project-image-wrap {
+			margin-top: 24px;
+			width: 98vw;
+			margin-left: calc(50% - 49vw);
+		}
+
+		.project-image {
+			display: block;
+			width: 100%;
+			height: auto;
+			border: 2px solid var(--ink);
+			border-radius: 18px;
+			background: var(--white);
 		}
 
 		.model-grid {
@@ -601,6 +624,7 @@
 					<li><a href="#why">WHY</a></li>
 					<li><a href="#what">WHAT</a></li>
 					<li><a href="#experiment">EXPERIMENT</a></li>
+					<li><a href="#project">PROJECT</a></li>
 					<li><a href="#model">MODEL</a></li>
 					<li><a href="#vision">VISION</a></li>
 					<li><a href="#message">MESSAGE</a></li>
@@ -621,6 +645,7 @@
 			<a class="mobile-menu-link" href="#why">WHY</a>
 			<a class="mobile-menu-link" href="#what">WHAT</a>
 			<a class="mobile-menu-link" href="#experiment">EXPERIMENT</a>
+			<a class="mobile-menu-link" href="#project">PROJECT</a>
 			<a class="mobile-menu-link" href="#model">MODEL</a>
 			<a class="mobile-menu-link" href="#vision">VISION</a>
 			<a class="mobile-menu-link" href="#message">MESSAGE</a>
@@ -667,20 +692,20 @@
 					이 과정을 통해 사람들은 연결되고 응원받고 변화합니다.
 				</p>
 				<ul class="program-grid">
-					<li><span class="program-name">해피콜1</span><span class="program-desc">전화 상담</span></li>
+					<li><span class="program-name">해피콜1</span><span class="program-desc">전화상담</span></li>
 					<li><span class="program-name">해피콜2</span><span class="program-desc">지금 당장 만나기</span></li>
-					<li><span class="program-name">해피식사</span><span class="program-desc">함께하는 식사</span></li>
-					<li><span class="program-name">해피드라이브</span><span class="program-desc">함께하는 시간</span></li>
-					<li><span class="program-name">해피드링킹</span><span class="program-desc">함께하는 진대</span></li>
-					<li><span class="program-name">해피파티</span><span class="program-desc">함께하는 즐거움</span></li>
-					<li><span class="program-name">해피투어</span><span class="program-desc">함께하는 경험</span></li>
-					<li><span class="program-name">해피소개팅</span><span class="program-desc">사람을 연결</span></li>
-					<li><span class="program-name">해피시험</span><span class="program-desc">시험합격</span></li>
-					<li><span class="program-name">해피취업</span><span class="program-desc">취업성공</span></li>
-					<li><span class="program-name">해피창업</span><span class="program-desc">창업대박</span></li>
-					<li><span class="program-name">해피 프로젝트</span><span class="program-desc">뭐든지 오케이</span></li>
-					<li><span class="program-name">해피고민상담소</span><span class="program-desc">고민상담도 오케이</span></li>
-					<li><span class="program-name">해피하우스</span><span class="program-desc">숙식제공</span></li>
+					<li><span class="program-name">해피밀</span><span class="program-desc">맛있는 음식 함께 먹기</span></li>
+					<li><span class="program-name">해피드라이브</span><span class="program-desc">데리러 가거나 데려다 주기</span></li>
+					<li><span class="program-name">해피아워</span><span class="program-desc">술과 함께하는 행복한 시간</span></li>
+					<li><span class="program-name">해피고민상담소</span><span class="program-desc">고민을 해결해봐요</span></li>
+					<li><span class="program-name">해피하우스</span><span class="program-desc">해피집을 제공해요</span></li>
+					<li><span class="program-name">해피파티</span><span class="program-desc">커뮤니티 사람과 함께해요</span></li>
+					<li><span class="program-name">해피투어</span><span class="program-desc">새로운 경험을 나눠요</span></li>
+					<li><span class="program-name">해피소개팅</span><span class="program-desc">사람을 연결해요</span></li>
+					<li><span class="program-name">해피시험</span><span class="program-desc">무조건 합격시켜요</span></li>
+					<li><span class="program-name">해피취업</span><span class="program-desc">무조건 취업시켜요</span></li>
+					<li><span class="program-name">해피창업</span><span class="program-desc">무조건 창업시켜요</span></li>
+					<li><span class="program-name">해피프로젝트</span><span class="program-desc">원하는걸 함께해요</span></li>
 				</ul>
 			</div>
 		</section>
@@ -707,9 +732,31 @@
 			</div>
 		</section>
 
+		<section id="project">
+			<div class="container">
+				<p class="section-title">4. PROJECT</p>
+				<h2 class="section-headline">해피캐피탈 사무실 프로젝트</h2>
+				<p class="lead">
+					해피캐피탈은 용산 파차마마 카페 대표님의 지원으로 카페 지하에 공간을 얻었습니다.
+					거기에 다양한 감정 유통 실험이 진행될 해피캐피탈 사무실을 오픈할 거에요.
+					컨셉은 첨부한 이미지처럼 탐정사무소, 대출상담소 입니다.
+					무조건 무료나눔이나 협찬으로만으로 공간을 꾸미려고 합니다.
+					컨셉 이미지 입니다.
+				</p>
+			</div>
+			<div class="project-image-wrap">
+				<img class="project-image" src="office.png" alt="해피캐피탈 사무실 컨셉 이미지" loading="lazy" decoding="async" />
+			</div>
+			<div class="container">
+				<div class="model-actions">
+					<button class="btn point" type="button">무료나눔 하기</button>
+				</div>
+			</div>
+		</section>
+
 		<section id="model">
 			<div class="container">
-				<p class="section-title">4. MODEL</p>
+				<p class="section-title">5. MODEL</p>
 				<h2 class="section-headline">해피캐피탈의 3가지 참여 방식</h2>
 				<p class="lead">Support, Membership, Investment 세 가지 방식으로 운영됩니다.</p>
 
@@ -725,9 +772,9 @@
 						<article class="model-card">
 							<h4>Support | 후원</h4>
 							<ul>
-								<li><span class="price">10만원</span><span>오픈파티 소개팅</span></li>
-								<li><span class="price">20만원</span><span>오픈파티 소개팅 + 해피콜1</span></li>
-								<li><span class="price">30만원</span><span>오픈파티 소개팅 + 해피콜1 + 해피콜2</span></li>
+								<li><span class="price">10만원</span><span>오픈파티 + 소개팅</span></li>
+								<li><span class="price">20만원</span><span>오픈파티 + 소개팅 + 해피콜1</span></li>
+								<li><span class="price">30만원</span><span>오픈파티 + 소개팅 + 해피콜1 + 해피콜2</span></li>
 							</ul>
 						</article>
 					</div>
@@ -743,8 +790,8 @@
 						<article class="model-card">
 							<h4>Membership | 멤버십</h4>
 							<ul>
-								<li><span class="price">50만원</span><span>오픈파티 소개팅 + 해피콜1,2 + 옵션 2개 추가</span></li>
-								<li><span class="price">100만원</span><span>오픈파티 소개팅 + 해피콜1,2 + 옵션 4개 추가</span></li>
+								<li><span class="price">50만원</span><span>오픈파티 + 소개팅 + 해피콜1,2 + 옵션 2개 추가</span></li>
+								<li><span class="price">100만원</span><span>오픈파티 + 소개팅 + 해피콜1,2 + 옵션 4개 추가</span></li>
 							</ul>
 						</article>
 					</div>
@@ -774,7 +821,7 @@
 
 		<section id="vision">
 			<div class="container">
-				<p class="section-title">5. VISION</p>
+				<p class="section-title">6. VISION</p>
 				<h2 class="section-headline">해피캐피탈의 단계별 목표</h2>
 				<div class="vision-grid">
 					<article class="vision-step">
@@ -798,7 +845,7 @@
 
 		<section id="message">
 			<div class="container">
-				<p class="section-title">6. MESSAGE</p>
+				<p class="section-title">7. MESSAGE</p>
 				<h2 class="section-headline">사람을 믿는 실험실</h2>
 				<div class="message-box">
 					<p>해피캐피탈은 돈을 버는 회사라기보다<br />사람을 믿는 실험실입니다.</p>
