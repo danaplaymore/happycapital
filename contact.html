@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>문의하기 | Happy Capital</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fonts-archive/Paperlogy/Paperlogy.css" />
+  <style>
+        .site-footer {
+          padding: 22px 0 32px;
+          font-size: 0.9rem;
+          color: #555;
+          border-top: 1px solid #fff;
+        }
+    :root {
+      --main: #FFE314;
+      --point: #E72418;
+      --ink: #121212;
+      --line: #ffffff;
+      --white: #ffffff;
+      --anchor-offset: 90px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Paperlogy', sans-serif;
+      color: var(--ink);
+      background: var(--main);
+      line-height: 1.6;
+    }
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+    /* .header-container and related media queries removed for consistency with index.html */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 227, 20, 0.96);
+      backdrop-filter: blur(6px);
+    }
+    .site-header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      gap: 24px;
+    }
+    @media (max-width: 780px) {
+      .site-header .container {
+        padding-left: 2%;
+        padding-right: 2%;
+      }
+    }
+    .logo {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      color: var(--ink);
+    }
+    .logo span { color: var(--point); }
+    .menu { display: flex; list-style: none; flex-wrap: wrap; gap: 14px; }
+    .menu a {
+      text-decoration: none;
+      color: var(--ink);
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 8px 10px;
+      border-radius: 999px;
+    }
+    .menu a:hover { background: var(--point); color: var(--white); }
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 2px solid var(--ink);
+      border-radius: 10px;
+      background: var(--white);
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .menu-toggle span {
+      display: block;
+      width: 20px;
+      height: 2.5px;
+      border-radius: 999px;
+      background: var(--ink);
+    }
+    .mobile-menu-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(18, 18, 18, 0.28);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 180ms ease;
+      z-index: 45;
+    }
+    .mobile-menu-panel {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: min(82vw, 320px);
+      height: 100dvh;
+      padding: 86px 18px 20px;
+      background: var(--white);
+      border-left: 3px solid var(--point);
+      transform: translateX(100%);
+      transition: transform 220ms ease;
+      z-index: 50;
+    }
+    .mobile-menu-nav { display: grid; gap: 8px; }
+    .mobile-menu-link {
+      display: block;
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 700;
+      padding: 10px 12px;
+      border-radius: 10px;
+    }
+    .mobile-menu-link:hover { background: var(--point); color: var(--white); }
+    body.mobile-menu-open .mobile-menu-overlay { opacity: 1; pointer-events: auto; }
+    body.mobile-menu-open .mobile-menu-panel { transform: translateX(0); }
+    body.mobile-menu-open .menu-toggle { border-color: var(--point); }
+    body.mobile-menu-open .menu-toggle span { background: var(--point); }
+    @media (max-width: 780px) {
+      :root {
+        --anchor-offset: 84px;
+      }
+      .container {
+        width: min(480px, 96%);
+        margin: 0 auto;
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+      .menu {
+        display: none;
+      }
+      .menu-toggle {
+        display: inline-flex;
+      }
+      .mobile-menu-overlay,
+      .mobile-menu-panel {
+        display: block;
+      }
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      margin-top: 56px;
+    }
+        form button[type="submit"] {
+          margin-bottom: 48px;
+        }
+    label { display: block; margin-bottom: 0.5rem; font-weight: bold; }
+    input, select, textarea {
+      width: 100%; padding: 0.7rem; margin-bottom: 1.2rem; border: 1px solid #ddd; border-radius: 6px; font-size: 1rem; font-family: inherit; background: #fafafa; box-sizing: border-box;
+    }
+    textarea { min-height: 80px; resize: vertical; }
+    .checkbox-row { display: flex; align-items: center; margin-bottom: 0.2rem; }
+    .checkbox-row input[type="checkbox"] { width: 20px; height: 20px; margin-right: 0.3rem; vertical-align: middle; }
+    .checkbox-row label[for="privacy"] { margin: 0; font-weight: normal; line-height: 1.2; position: relative; top: -6px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 12px;
+      border: 2px solid var(--ink);
+      text-decoration: none;
+      font-weight: 700;
+      font-family: inherit;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--ink);
+      background: var(--white);
+      transition: background 0.2s, box-shadow 0.2s, color 0.2s, border-color 0.2s;
+      box-shadow: 0 2px 8px rgba(231,36,24,0.08);
+    }
+    button.btn {
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .btn.point {
+      background: var(--point);
+      color: var(--white);
+      border-color: var(--point);
+    }
+    .btn.point:hover {
+      background: var(--point) !important;
+      color: var(--white) !important;
+      border-color: var(--point) !important;
+    }
+    .btn.point {
+      background: var(--point);
+      color: var(--white);
+      border-color: var(--point);
+    }
+    .btn:hover, .btn.point:hover {
+      background: #b91c13;
+      color: #fff;
+      border-color: #b91c13;
+    }
+    .program-btn-group { display: flex; flex-wrap: wrap; gap: 0.5rem 0.7rem; margin-bottom: 1.2rem; }
+    .program-btn { display: inline-block; background: #FFE314; color: #121212; border: 2px solid #E72418; border-radius: 6px; padding: 0.5rem 1.1rem; font-size: 1rem; font-family: inherit; font-weight: bold; cursor: pointer; margin-bottom: 0; transition: background 0.18s, color 0.18s, border 0.18s; user-select: none; }
+    .program-btn input[type="checkbox"] { display: none; }
+    .program-btn input[type="checkbox"]:checked + span, .program-btn input[type="checkbox"]:checked { background: #E72418; color: #fff; border-color: #E72418; }
+    .program-btn input[type="checkbox"]:checked ~ span { color: #fff; }
+    .program-btn:has(input[type="checkbox"]:checked) { background: #E72418; color: #fff; border-color: #E72418; }
+    .privacy-info-box { background: #f4f4f4; border: 1px solid #ddd; border-radius: 7px; padding: 0.7rem 2rem; margin-bottom: 1.2rem; margin-top: 0; }
+    .privacy-info-box ul { margin: 0; padding-left: 1.1em; }
+    .privacy-info-box li {
+      font-size: 70%;
+      color: #888;
+      margin-bottom: 0.2em;
+      list-style: none;
+      padding: 0;
+      margin-left: 0;
+    }
+    .program-btn-group.required-missing {
+      border: 2px solid #E72418;
+      border-radius: 8px;
+      box-shadow: 0 0 0 2px #ffe7e3;
+      padding: 0.5em 0.7em;
+      margin-bottom: 1.2rem;
+      background: #fff6f5;
+      transition: border 0.18s, box-shadow 0.18s;
+    }
+    .privacy-info-box ul {
+      margin: 0;
+      padding-left: 0;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html#top">Happy <span>Capital</span></a>
+      <nav>
+        <ul class="menu">
+          <li><a href="index.html#why">WHY</a></li>
+          <li><a href="index.html#what">WHAT</a></li>
+          <li><a href="index.html#experiment">EXPERIMENT</a></li>
+          <li><a href="index.html#project">PROJECT</a></li>
+          <li><a href="index.html#model">MODEL</a></li>
+          <li><a href="index.html#vision">VISION</a></li>
+          <li><a href="index.html#message">MESSAGE</a></li>
+        </ul>
+      </nav>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobile-menu-panel">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+  <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+  <aside class="mobile-menu-panel" id="mobile-menu-panel" aria-hidden="true">
+    <nav class="mobile-menu-nav">
+      <a class="mobile-menu-link" href="index.html#top">HOME</a>
+      <a class="mobile-menu-link" href="index.html#why">WHY</a>
+      <a class="mobile-menu-link" href="index.html#what">WHAT</a>
+      <a class="mobile-menu-link" href="index.html#experiment">EXPERIMENT</a>
+      <a class="mobile-menu-link" href="index.html#project">PROJECT</a>
+      <a class="mobile-menu-link" href="index.html#model">MODEL</a>
+      <a class="mobile-menu-link" href="index.html#vision">VISION</a>
+      <a class="mobile-menu-link" href="index.html#message">MESSAGE</a>
+    </nav>
+  </aside>
+  <main>
+    <div class="container">
+      <h1>프로그램 신청하기</h1>
+      <form id="contact-form" autocomplete="off">
+        <label for="name">성함</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="phone">전화번호</label>
+        <input type="tel" id="phone" name="phone" required maxlength="11" pattern="[0-9]{11}" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,11)" />
+
+        <label for="email">이메일 주소</label>
+        <input type="email" id="email" name="email" required />
+
+        <label>프로그램</label>
+        <div class="program-btn-group">
+          <label class="program-btn"><input type="checkbox" name="program" value="해피콜1">해피콜1</label>
+          <label class="program-btn"><input type="checkbox" name="program" value="해피콜2">해피콜2</label>
+          <label class="program-btn"><input type="checkbox" name="program" value="해피밀">해피밀</label>
+          <label class="program-btn"><input type="checkbox" name="program" value="해피드라이브">해피드라이브</label>
+          <label class="program-btn"><input type="checkbox" name="program" value="해피아워">해피아워</label>
+          <label class="program-btn"><input type="checkbox" name="program" value="해피고민상담소1">해피고민상담소1</label>
+          <label class="program-btn"><input type="checkbox" name="program" value="해피고민상담소2">해피고민상담소2</label>
+          <label class="program-btn"><input type="checkbox" name="program" value="해피하우스">해피하우스</label>
+          <label class="program-btn"><input type="checkbox" name="program" value="해피파티">해피파티</label>
+          <label class="program-btn"><input type="checkbox" name="program" value="해피투어">해피투어</label>
+          <label class="program-btn"><input type="checkbox" name="program" value="해피소개팅">해피소개팅</label>
+          <label class="program-btn"><input type="checkbox" name="program" value="해피시험">해피시험</label>
+          <label class="program-btn"><input type="checkbox" name="program" value="해피취업">해피취업</label>
+          <label class="program-btn"><input type="checkbox" name="program" value="해피창업">해피창업</label>
+          <label class="program-btn"><input type="checkbox" name="program" value="해피프로젝트">해피프로젝트</label>
+        </div>
+
+        <label for="message">기타 요청사항</label>
+        <textarea id="message" name="message" placeholder="요청사항을 입력해 주세요"></textarea>
+
+        <div class="checkbox-row">
+          <input type="checkbox" id="privacy" name="privacy" required />
+          <label for="privacy">개인정보 제공 및 활용에 동의합니다.</label>
+        </div>
+        <div class="privacy-info-box">
+          <ul>
+            <li>개인정보 수집 및 이용목적 : 가맹점 개설 문의 상담 목적 외 사용하지 않음</li>
+            <li>수집 항목 : 이름, 연락처, 주소, 매장운영 여부, 매장규모, 취급브랜드, 기타 요청사항</li>
+            <li>보유 및 이용기간 : 3개월, 이후 즉시 파기</li>
+          </ul>
+        </div>
+
+        <button class="btn point" type="submit">보내기</button>
+      </form>
+    </div>
+  </main>
+    <footer class="site-footer">
+      <div class="container">
+        <p>© 2026 Happy Capital. All rights reserved.</p>
+      </div>
+    </footer>
+  <script>
+    // 모바일 메뉴 동작 스크립트 (index.html과 동일)
+    (function () {
+      const menuToggleButton = document.getElementById('menu-toggle');
+      const mobileMenuPanel = document.getElementById('mobile-menu-panel');
+      const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+      const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+      function closeMobileMenu() {
+        document.body.classList.remove('mobile-menu-open');
+        if (menuToggleButton) {
+          menuToggleButton.setAttribute('aria-expanded', 'false');
+          menuToggleButton.setAttribute('aria-label', '메뉴 열기');
+        }
+        if (mobileMenuPanel) {
+          mobileMenuPanel.setAttribute('aria-hidden', 'true');
+        }
+      }
+      function openMobileMenu() {
+        document.body.classList.add('mobile-menu-open');
+        if (menuToggleButton) {
+          menuToggleButton.setAttribute('aria-expanded', 'true');
+          menuToggleButton.setAttribute('aria-label', '메뉴 닫기');
+        }
+        if (mobileMenuPanel) {
+          mobileMenuPanel.setAttribute('aria-hidden', 'false');
+        }
+      }
+      if (menuToggleButton && mobileMenuPanel) {
+        menuToggleButton.addEventListener('click', function () {
+          if (document.body.classList.contains('mobile-menu-open')) {
+            closeMobileMenu();
+            return;
+          }
+          openMobileMenu();
+        });
+        if (mobileMenuOverlay) {
+          mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+        }
+        mobileMenuLinks.forEach(function (link) {
+          link.addEventListener('click', closeMobileMenu);
+        });
+        window.addEventListener('resize', function () {
+          if (window.innerWidth > 780) {
+            closeMobileMenu();
+          }
+        });
+        window.addEventListener('keydown', function (event) {
+          if (event.key === 'Escape') {
+            closeMobileMenu();
+          }
+        });
+      }
+    })();
+  </script>
+  <script>
+    // 버튼 하트버스트 효과 (index.html과 동일)
+    (function () {
+      const hoverTargets = document.querySelectorAll('.btn, .heart-like-btn');
+      const hoverHeartSymbols = ['❤️', '💖', '💗', '💘'];
+      const hoverBurstTimers = new WeakMap();
+      function spawnHeartBurst(target) {
+        const rect = target.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        for (let i = 0; i < 6; i += 1) {
+          const particle = document.createElement('span');
+          const startX = centerX + (Math.random() * 26 - 13);
+          const startY = centerY + (Math.random() * 12 - 6);
+          const dx = Math.random() * 84 - 42;
+          const dy = -(Math.random() * 68 + 40);
+          particle.className = 'heart-fx-particle';
+          particle.textContent = hoverHeartSymbols[Math.floor(Math.random() * hoverHeartSymbols.length)];
+          particle.style.setProperty('--x', `${startX}px`);
+          particle.style.setProperty('--y', `${startY}px`);
+          particle.style.setProperty('--dx', `${dx.toFixed(1)}px`);
+          particle.style.setProperty('--dy', `${dy.toFixed(1)}px`);
+          particle.style.fontSize = `${16 + Math.random() * 16}px`;
+          particle.style.animationDuration = `${640 + Math.random() * 280}ms`;
+          document.body.appendChild(particle);
+          particle.addEventListener('animationend', function () {
+            particle.remove();
+          }, { once: true });
+        }
+      }
+      hoverTargets.forEach(function (target) {
+        target.addEventListener('mouseenter', function () {
+          if (hoverBurstTimers.has(target)) return;
+          spawnHeartBurst(target);
+          const timerId = window.setInterval(function () {
+            spawnHeartBurst(target);
+          }, 220);
+          hoverBurstTimers.set(target, timerId);
+        });
+        target.addEventListener('mouseleave', function () {
+          const timerId = hoverBurstTimers.get(target);
+          if (typeof timerId === 'number') window.clearInterval(timerId);
+          hoverBurstTimers.delete(target);
+        });
+      });
+    })();
+    // 하트버스트 애니메이션 스타일
+    const style = document.createElement('style');
+    style.textContent = `
+      .heart-fx-particle {
+        position: fixed;
+        left: var(--x);
+        top: var(--y);
+        pointer-events: none;
+        opacity: 1;
+        z-index: 9999;
+        animation: heart-burst-fx 0.8s cubic-bezier(.61,-0.01,.7,1.01) forwards;
+      }
+      @keyframes heart-burst-fx {
+        0% { opacity: 1; transform: translate(0,0) scale(1); }
+        80% { opacity: 1; }
+        100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(0.7); }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+
+  <script>
+    // Google Apps Script 연동: 폼 제출 시 fetch로 데이터 전송 (순서: name, phone, email, message, privacy)
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.getElementById('contact-form');
+      if (!form) return;
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn) submitBtn.disabled = true;
+        const data = {
+          name: form.querySelector('input[name="name"]').value,
+          phone: form.querySelector('input[name="phone"]').value,
+          email: form.querySelector('input[name="email"]').value,
+          message: form.querySelector('textarea[name="message"]').value,
+          privacy: form.querySelector('input[name="privacy"]').checked ? '동의' : '미동의'
+        };
+        // 프로그램(checkbox) 값 추가
+        const programs = Array.from(form.querySelectorAll('input[name="program"]:checked')).map(i => i.value);
+        if (programs.length) data.message += `\n프로그램: ${programs.join(', ')}`;
+        fetch('https://script.google.com/macros/s/AKfycbypJl0PrcYwWPHd6gjg5nlSH7gtHukEG8nsMUzvjriR50VNqzcCsJN06dQMlNivVKw/exec', {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Accept': 'application/json' },
+          body: new URLSearchParams(data)
+        }).then(() => {
+          alert('정상적으로 접수되었습니다!');
+          form.reset();
+          if (submitBtn) submitBtn.disabled = false;
+        }).catch(() => {
+          alert('오류가 발생했습니다. 다시 시도해 주세요.');
+          if (submitBtn) submitBtn.disabled = false;
+        });
+      });
+    });
+  </script>
+  
+</body>
+</html>
