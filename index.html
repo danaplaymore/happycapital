@@ -1042,6 +1042,38 @@
 			});
 		});
 	</script>
+
+<script>
+// 스크롤에 따라 이미지 순차적으로 변경 (01~08)
+document.addEventListener('DOMContentLoaded', function () {
+	const imageEl = document.getElementById('scroll-cycle-image');
+	if (!imageEl) return;
+	const imageCount = 8;
+	const imagePrefix = '';
+	const imageExt = '.png';
+	let lastIndex = -1;
+
+	function updateImageByScroll() {
+		const scrollTop = window.scrollY || window.pageYOffset;
+		const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+		let idx = Math.floor((scrollTop / docHeight) * imageCount);
+		if (idx >= imageCount) idx = imageCount - 1;
+		// 마지막 구간(스크롤 맨 아래)에서는 01로 복귀
+		if (scrollTop + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+			idx = 0;
+		}
+		if (lastIndex !== idx) {
+			lastIndex = idx;
+			const num = (idx + 1).toString().padStart(2, '0');
+			imageEl.src = imagePrefix + num + imageExt;
+		}
+	}
+
+	window.addEventListener('scroll', updateImageByScroll);
+	window.addEventListener('resize', updateImageByScroll);
+	updateImageByScroll();
+});
+</script>
 </main>
 
 <!-- 투자자용 비밀페이지 팝업 -->
