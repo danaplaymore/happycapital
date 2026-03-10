@@ -1126,4 +1126,58 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 </body>
+<script>
+// contact.html과 동일한 모바일 메뉴 동작 스크립트
+(function () {
+	const menuToggleButton = document.getElementById('menu-toggle');
+	const mobileMenuPanel = document.getElementById('mobile-menu-panel');
+	const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+	const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+	function closeMobileMenu() {
+		document.body.classList.remove('mobile-menu-open');
+		if (menuToggleButton) {
+			menuToggleButton.setAttribute('aria-expanded', 'false');
+			menuToggleButton.setAttribute('aria-label', '메뉴 열기');
+		}
+		if (mobileMenuPanel) {
+			mobileMenuPanel.setAttribute('aria-hidden', 'true');
+		}
+	}
+	function openMobileMenu() {
+		document.body.classList.add('mobile-menu-open');
+		if (menuToggleButton) {
+			menuToggleButton.setAttribute('aria-expanded', 'true');
+			menuToggleButton.setAttribute('aria-label', '메뉴 닫기');
+		}
+		if (mobileMenuPanel) {
+			mobileMenuPanel.setAttribute('aria-hidden', 'false');
+		}
+	}
+	if (menuToggleButton && mobileMenuPanel) {
+		menuToggleButton.addEventListener('click', function () {
+			if (document.body.classList.contains('mobile-menu-open')) {
+				closeMobileMenu();
+				return;
+			}
+			openMobileMenu();
+		});
+		if (mobileMenuOverlay) {
+			mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+		}
+		mobileMenuLinks.forEach(function (link) {
+			link.addEventListener('click', closeMobileMenu);
+		});
+		window.addEventListener('resize', function () {
+			if (window.innerWidth > 780) {
+				closeMobileMenu();
+			}
+		});
+		window.addEventListener('keydown', function (event) {
+			if (event.key === 'Escape') {
+				closeMobileMenu();
+			}
+		});
+	}
+})();
+</script>
 </html>
